@@ -6,9 +6,7 @@ import 'package:recipes_app/widgets/custom_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/';
-  const HomeScreen({super.key, required this.favorites});
-
-  final List<Meal> favorites;
+  const HomeScreen({super.key});
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -20,15 +18,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     _listScreen = [
       {'page': const CategoriesScreen(), 'title': 'Tasty Foods'},
-      {
-        'page': FavoriteScreen(
-          favorites: widget.favorites,
-        ),
-        'title': 'My Favorites'
-      },
+      {'page': const FavoriteScreen(), 'title': 'My Favorites'},
     ];
     super.initState();
   }

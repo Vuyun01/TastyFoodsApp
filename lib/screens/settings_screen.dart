@@ -1,29 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:recipes_app/provider/meals.dart';
 
 class SettingsScreen extends StatefulWidget {
   static const String routeName = '/settings';
-  const SettingsScreen(
-      {super.key, required this.filters, required this.onSetFilter});
+  const SettingsScreen({super.key});
 
-  final Map<String, bool> filters;
-  final Function onSetFilter;
+  // final Map<String, bool> filters;
+  // final Function onSetFilter;
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  bool _gluten = false;
-  bool _vegan = false;
-  bool _lactose = false;
-  bool _vegetarian = false;
+  // bool _gluten = false;
+  // bool _vegan = false;
+  // bool _lactose = false;
+  // bool _vegetarian = false;
 
+  late Map<String, bool> filters;
+  // Map<String, Object> initialFilters = {
+  //   'gluten': false,
+  //   'lactose': false,
+  //   'vegan': false,
+  //   'vegetarian': false
+  // };
   @override
   void initState() {
-    // TODO: implement initState
-    _gluten = widget.filters['gluten'] as bool;
-    _vegan = widget.filters['vegan'] as bool;
-    _lactose = widget.filters['lactose'] as bool;
-    _vegetarian = widget.filters['vegetarian'] as bool;
+    filters = Provider.of<Meals>(context, listen: false).settingFilter;
+    // _gluten = filters.settingFilter['gluten'] as bool;
+    // _vegan = filters.settingFilter['vegan'] as bool;
+    // _lactose = filters.settingFilter['lactose'] as bool;
+    // _vegetarian = filters.settingFilter['vegetarian'] as bool;
 
     super.initState();
   }
@@ -33,19 +41,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Settings'),
-        actions: [
-          IconButton(
-              onPressed: () {
-                final _filters = {
-                  'gluten': _gluten,
-                  'lactose': _lactose,
-                  'vegan': _vegan,
-                  'vegetarian': _vegetarian
-                };
-                widget.onSetFilter(_filters);
-              },
-              icon: const Icon(Icons.save))
-        ],
+        // actions: [
+        //   IconButton(
+        //       onPressed: () {
+        //         final _filters = {
+        //           'gluten': _gluten,
+        //           'lactose': _lactose,
+        //           'vegan': _vegan,
+        //           'vegetarian': _vegetarian
+        //         };
+        //         filters.updateSettings(_filters);
+        //       },
+        //       icon: const Icon(Icons.save))
+        // ],
       ),
       body: Column(
         children: [
@@ -63,35 +71,36 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           _buildCustomSwitch(
               title: 'Gluten-Free',
-              currentValue: _gluten,
+              currentValue: filters['gluten'] ?? false,
               updateValue: (value) {
                 setState(() {
-                  _gluten = value;
+                  filters['gluten'] = value;
                 });
               }),
           _buildCustomSwitch(
               title: 'Lactose-Free',
-              currentValue: _lactose,
+              currentValue: filters['lactose'] ?? false,
               updateValue: (value) {
                 setState(() {
-                  _lactose = value;
+                  filters['lactose'] = value;
                 });
               }),
           _buildCustomSwitch(
               title: 'Vegan',
-              currentValue: _vegan,
+              currentValue: filters['vegan'] ?? false,
               updateValue: (value) {
                 setState(() {
-                  _vegan = value;
+                  filters['vegan'] = value;
                 });
               }),
           _buildCustomSwitch(
               title: 'Vegetarian',
-              currentValue: _vegetarian,
+              currentValue: filters['vegetarian'] ?? false,
               updateValue: (value) {
                 setState(() {
-                  _vegetarian = value;
+                  filters['vegetarian'] = value;
                 });
+                // print(Provider.of<Meals>(context, listen: false).settingFilter['vegetarian']);
               }),
         ],
       ),

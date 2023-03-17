@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../models/meal.dart';
-import 'custom_back_button.dart';
+import '../../models/meal.dart';
+import '../custom_back_button.dart';
 
 class MealHeaderImage extends StatelessWidget {
   const MealHeaderImage({

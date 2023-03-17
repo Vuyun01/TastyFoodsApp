@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:recipes_app/widgets/category_item.dart';
 import 'package:recipes_app/screens/category_recipes_screen.dart';
-import 'package:recipes_app/demo_data.dart';
+
+import '../constant.dart';
 
 class CategoriesScreen extends StatelessWidget {
   static const String routeName = '/categories';

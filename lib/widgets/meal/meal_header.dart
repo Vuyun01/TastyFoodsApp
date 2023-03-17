@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipes_app/widgets/meal_utility_desc.dart';
 import 'package:recipes_app/constant.dart';
-import '../models/meal.dart';
+import '../../models/meal.dart';
 
 class MealHeader extends StatelessWidget {
   const MealHeader({

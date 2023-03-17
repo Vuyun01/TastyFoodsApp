@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/meal.dart';
+import '../../models/meal.dart';
 
 class InstructionsMeal extends StatelessWidget {
   const InstructionsMeal({

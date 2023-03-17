@@ -1,6 +1,8 @@
+
+
 import '../constant.dart';
 
-class Meal {
+class Meal{
   final String id;
   final List<String> categories;
   final String title;
@@ -14,8 +16,9 @@ class Meal {
   final bool isLactoseFree;
   final bool isVegan;
   final bool isVegetarian;
+  bool isFavorite;
 
-  const Meal(
+  Meal(
       {required this.id,
       required this.categories,
       required this.title,
@@ -28,5 +31,7 @@ class Meal {
       required this.isGlutenFree,
       required this.isLactoseFree,
       required this.isVegan,
-      required this.isVegetarian});
+      required this.isVegetarian,
+      this.isFavorite = false});
+
 }

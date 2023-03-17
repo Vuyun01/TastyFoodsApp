@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:recipes_app/demo_data.dart';
-import 'package:recipes_app/widgets/meal_utility_desc.dart';
+import 'package:provider/provider.dart';
+import 'package:recipes_app/provider/meals.dart';
 import 'package:recipes_app/widgets/related_meal_card.dart';
 
-import '../models/meal.dart';
+import '../../models/meal.dart';
+import '../section_name.dart';
 import 'meal_header.dart';
 import 'meal_ingredients.dart';
 import 'meal_instructions.dart';
-import 'section_name.dart';
 
 class MealDetails extends StatelessWidget {
   const MealDetails({
@@ -19,10 +19,10 @@ class MealDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final meals = demoMeals
+    final meals = Provider.of<Meals>(context, listen: false)
+        .meals
         .where((item) =>
-            item.categories.contains(meal.categories[0]) &&
-            item.id != meal.id)
+            item.categories.contains(meal.categories[0]) && item.id != meal.id)
         .toList();
     return Padding(
       padding: const EdgeInsets.all(15),

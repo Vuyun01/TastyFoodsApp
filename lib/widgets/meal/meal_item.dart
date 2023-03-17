@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:recipes_app/models/meal.dart';
 import 'package:recipes_app/screens/meal_detail_screen.dart';
 import 'package:recipes_app/widgets/meal_utility_desc.dart';
 import 'package:recipes_app/constant.dart';
 
 class MealItem extends StatelessWidget {
-  const MealItem({super.key, required this.item});
-
-  final Meal item;
-
+  const MealItem({super.key, required this.meal});
+  final Meal meal;
   @override
   Widget build(BuildContext context) {
+    // final meal = Provider.of<Meal>(context,listen: false);
     return Card(
       elevation: 5,
       margin: const EdgeInsets.all(10),
@@ -18,7 +18,7 @@ class MealItem extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(15),
         onTap: () => Navigator.of(context)
-            .pushNamed(MealDetailScreen.routeName, arguments: item),
+            .pushNamed(MealDetailScreen.routeName, arguments: meal),
         child: Column(
           children: [
             Stack(
@@ -28,7 +28,7 @@ class MealItem extends StatelessWidget {
                         topLeft: Radius.circular(15),
                         topRight: Radius.circular(15)),
                     child: Image.network(
-                      item.imageURL,
+                      meal.imageURL,
                       fit: BoxFit.cover,
                       height: 250,
                       width: double.maxFinite,
@@ -44,7 +44,7 @@ class MealItem extends StatelessWidget {
                           color: Colors.black38,
                           borderRadius: BorderRadius.circular(15)),
                       child: Text(
-                        item.title,
+                        meal.title,
                         textAlign: TextAlign.center,
                         softWrap: true,
                         overflow: TextOverflow.fade,
@@ -62,15 +62,15 @@ class MealItem extends StatelessWidget {
                 children: [
                   MealUtilityDescription(
                       icon: Icons.timer_outlined,
-                      text: '${item.duration} mins'),
+                      text: '${meal.duration} mins'),
                   const Spacer(),
                   MealUtilityDescription(
                       icon: Icons.timelapse,
-                      text: getComplexity(item.complexity)),
+                      text: getComplexity(meal.complexity)),
                   const Spacer(),
                   MealUtilityDescription(
                       icon: Icons.monetization_on_outlined,
-                      text: getAffordability(item.affordability)),
+                      text: getAffordability(meal.affordability)),
                 ],
               ),
             ),
